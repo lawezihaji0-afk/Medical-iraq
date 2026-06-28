@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شبكة الطلاب - الصفحة الشخصية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="main-page">
+
+    <!-- شريط التنقل -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="window.location.href='home.html'">
+                <i class="fas fa-graduation-cap"></i>
+                <span>شبكة الطلاب</span>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="window.location.href='home.html'">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="nav-btn logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- الصفحة الشخصية -->
+    <div class="profile-page">
+        <!-- الغلاف -->
+        <div class="profile-cover" id="profileCover">
+            <button class="change-cover-btn" id="changeCoverBtn" onclick="changeCover()">
+                <i class="fas fa-camera"></i> تغيير الغلاف
+            </button>
+            <input type="file" id="coverInput" accept="image/*" onchange="updateCover(event)" hidden>
+        </div>
+
+        <!-- معلومات البروفايل -->
+        <div class="profile-info-section">
+            <div class="profile-avatar-wrapper">
+                <div class="profile-avatar-large" id="profileAvatar">😊</div>
+                <button class="change-avatar-btn" id="changeAvatarBtn" onclick="changeAvatar()">
+                    <i class="fas fa-camera"></i>
+                </button>
+            </div>
+            <div class="profile-details">
+                <h1 id="profileFullName">الاسم الكامل</h1>
+                <p class="profile-username" id="profileUsername">@username</p>
+                <p class="profile-bio" id="profileBio">لا يوجد نبذة بعد...</p>
+                <div class="profile-meta">
+                    <span><i class="fas fa-calendar-alt"></i> انضم <span id="joinDate">اليوم</span></span>
+                    <span><i class="fas fa-map-marker-alt"></i> <span id="profileLocation">غير محدد</span></span>
+                </div>
+            </div>
+            <div class="profile-actions" id="profileActions">
+                <button class="btn-edit-profile" onclick="openEditProfile()">
+                    <i class="fas fa-edit"></i> تعديل الملف الشخصي
+                </button>
+            </div>
+        </div>
+
+        <!-- إحصائيات -->
+        <div class="profile-stats-bar">
+            <div class="profile-stat" onclick="showProfileSection('posts')">
+                <strong id="pPostCount">0</strong>
+                <span>منشور</span>
+            </div>
+            <div class="profile-stat" onclick="showFollowers()">
+                <strong id="pFollowers">0</strong>
+                <span>متابع</span>
+            </div>
+            <div class="profile-stat" onclick="showFollowing()">
+                <strong id="pFollowing">0</strong>
+                <span>متابَع</span>
+            </div>
+            <div class="profile-stat">
+                <strong id="pLikes">0</strong>
+                <span>إعجاب</span>
+            </div>
+        </div>
+
+        <!-- تبويبات -->
+        <div class="profile-tabs">
+            <button class="tab-btn active" onclick="switchProfileTab('posts', this)">
+                <i class="fas fa-th-large"></i> المنشورات
+            </button>
+            <button class="tab-btn" onclick="switchProfileTab('photos', this)">
+                <i class="fas fa-images"></i> الصور
+            </button>
+            <button class="tab-btn" onclick="switchProfileTab('videos', this)">
+                <i class="fas fa-video"></i> الفيديوهات
+            </button>
+            <button class="tab-btn" onclick="switchProfileTab('likes', this)">
+                <i class="fas fa-heart"></i> الإعجابات
+            </button>
+        </div>
+
+        <!-- محتوى التبويبات -->
+        <div class="profile-content">
+            <div id="profilePostsContainer">
+                <!-- منشورات الملف الشخصي -->
+            </div>
+            <div id="profilePhotosGrid" class="photos-grid hidden">
+                <!-- شبكة الصور -->
+            </div>
+            <div id="profileVideosGrid" class="videos-grid hidden">
+                <!-- شبكة الفيديوهات -->
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تعديل الملف الشخصي -->
+    <div class="modal-overlay hidden" id="editProfileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-edit"></i> تعديل الملف الشخصي</h3>
+                <button class="close-modal" onclick="closeEditProfile()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="editFullName" placeholder="الاسم الكامل">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-info-circle"></i>
+                    <textarea id="editBio" placeholder="نبذة عنك..." rows="3"></textarea>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="editLocation" placeholder="الموقع">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-globe"></i>
+                    <input type="url" id="editWebsite" placeholder="الموقع الإلكتروني">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-publish" onclick="saveProfile()">
+                    <i class="fas fa-save"></i> حفظ التغييرات
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+    <script>
+        // تحميل بيانات البروفايل
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+  </html>
