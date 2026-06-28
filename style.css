@@ -1,0 +1,1090 @@
+/* ======================== */
+/*    متغيرات عامة          */
+/* ======================== */
+:root {
+    --primary: #6c5ce7;
+    --primary-light: #a29bfe;
+    --primary-dark: #5641d4;
+    --secondary: #00cec9;
+    --accent: #fd79a8;
+    --success: #00b894;
+    --warning: #fdcb6e;
+    --danger: #e74c3c;
+    --dark: #2d3436;
+    --gray: #636e72;
+    --light-gray: #b2bec3;
+    --lighter-gray: #dfe6e9;
+    --bg: #f0f2f5;
+    --white: #ffffff;
+    --shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ======================== */
+/*    إعادة التعيين         */
+/* ======================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, 'Arial', sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+/* ======================== */
+/*    الخلفية المتحركة       */
+/* ======================== */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0c0c1d, #1a1a3e, #2d1b69);
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: floatCircle 15s infinite ease-in-out;
+}
+
+.c1 {
+    width: 400px; height: 400px;
+    background: var(--primary);
+    top: -100px; right: -100px;
+    animation-delay: 0s;
+}
+
+.c2 {
+    width: 300px; height: 300px;
+    background: var(--accent);
+    bottom: -50px; left: -50px;
+    animation-delay: 3s;
+}
+
+.c3 {
+    width: 200px; height: 200px;
+    background: var(--secondary);
+    top: 50%; left: 30%;
+    animation-delay: 6s;
+}
+
+.c4 {
+    width: 150px; height: 150px;
+    background: var(--warning);
+    top: 30%; right: 20%;
+    animation-delay: 9s;
+}
+
+.c5 {
+    width: 250px; height: 250px;
+    background: var(--success);
+    bottom: 20%; right: 40%;
+    animation-delay: 12s;
+}
+
+@keyframes floatCircle {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(50px, -50px) scale(1.1); }
+    50% { transform: translate(-30px, 80px) scale(0.9); }
+    75% { transform: translate(70px, 30px) scale(1.05); }
+}
+
+/* ======================== */
+/*    صفحة المصادقة          */
+/* ======================== */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.6s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 36px;
+    color: white;
+    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+}
+
+.logo-section h1 {
+    font-size: 28px;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.logo-section p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--dark);
+    font-size: 20px;
+}
+
+.auth-form h2 i {
+    color: var(--primary);
+    margin-left: 8px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.input-group i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-gray);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 14px 45px 14px 15px;
+    border: 2px solid var(--lighter-gray);
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-family: inherit;
+    transition: var(--transition);
+    background: var(--bg);
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+}
+
+.input-group input:focus + i,
+.input-group input:focus ~ i {
+    color: var(--primary);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.switch-form {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.switch-form a {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.switch-form a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* اختيار الصورة الرمزية */
+.avatar-select {
+    margin-bottom: 18px;
+}
+
+.avatar-select p {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 10px;
+}
+
+.avatar-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.avatar-option {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--bg);
+}
+
+.avatar-option:hover {
+    transform: scale(1.15);
+    border-color: var(--light-gray);
+}
+
+.avatar-option.selected {
+    border-color: var(--primary);
+    background: rgba(108, 92, 231, 0.1);
+    transform: scale(1.15);
+}
+
+/* ======================== */
+/*    شريط التنقل العلوي    */
+/* ======================== */
+.top-nav {
+    background: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 65px;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 20px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.nav-logo i {
+    font-size: 28px;
+    color: var(--primary);
+}
+
+.nav-logo span {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.nav-search {
+    flex: 1;
+    max-width: 400px;
+    position: relative;
+}
+
+.nav-search input {
+    width: 100%;
+    padding: 10px 15px 10px 40px;
+    border: none;
+    border-radius: 25px;
+    background: var(--bg);
+    font-size: 14px;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.nav-search input:focus {
+    outline: none;
+    background: var(--lighter-gray);
+}
+
+.nav-search i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-gray);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-btn {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--gray);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-btn:hover {
+    background: var(--bg);
+    color: var(--primary);
+}
+
+.nav-label {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.nav-avatar {
+    font-size: 24px;
+}
+
+.msg-badge, .notif-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: var(--danger);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 10px;
+    display: none;
+}
+
+.logout-btn:hover {
+    color: var(--danger) !important;
+}
+
+/* ======================== */
+/*    المحتوى الرئيسي       */
+/* ======================== */
+.main-content {
+    display: grid;
+    grid-template-columns: 280px 1fr 300px;
+    gap: 25px;
+    max-width: 1400px;
+    margin: 85px auto 30px;
+    padding: 0 20px;
+}
+
+/* الشريط الجانبي */
+.sidebar-right, .sidebar-left {
+    position: sticky;
+    top: 85px;
+    height: fit-content;
+}
+
+.user-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.user-avatar-large {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.user-card h3 {
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.user-card p {
+    color: var(--gray);
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.user-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    border-top: 1px solid var(--lighter-gray);
+    border-bottom: 1px solid var(--lighter-gray);
+    margin-bottom: 15px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-size: 18px;
+    color: var(--primary);
+}
+
+.stat span {
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.btn-profile {
+    width: 100%;
+    padding: 10px;
+    background: var(--bg);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--dark);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-profile:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.quick-nav {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: var(--shadow);
+}
+
+.quick-nav h4 {
+    margin-bottom: 15px;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quick-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: var(--gray);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    font-size: 14px;
+}
+
+.quick-nav a:hover {
+    background: var(--bg);
+    color: var(--primary);
+}
+
+.quick-nav a i {
+    width: 20px;
+    text-align: center;
+}
+
+/* ======================== */
+/*    القصص (ستوريز)        */
+/* ======================== */
+.stories-section {
+    display: flex;
+    gap: 12px;
+    padding: 15px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.story {
+    flex-shrink: 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.story-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 5px;
+    border: 3px solid var(--primary);
+    padding: 3px;
+    transition: var(--transition);
+}
+
+.add-story .story-avatar {
+    background: var(--bg);
+    border: 3px dashed var(--light-gray);
+    color: var(--primary);
+    font-size: 24px;
+}
+
+.story span {
+    font-size: 11px;
+    color: var(--gray);
+}
+
+.story:hover .story-avatar {
+    transform: scale(1.1);
+}
+
+/* ======================== */
+/*    إنشاء منشور           */
+/* ======================== */
+.create-post-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.create-post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.create-avatar {
+    font-size: 40px;
+}
+
+.create-input {
+    flex: 1;
+    padding: 12px 18px;
+    background: var(--bg);
+    border-radius: 25px;
+    color: var(--gray);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 14px;
+}
+
+.create-input:hover {
+    background: var(--lighter-gray);
+}
+
+.create-post-actions {
+    display: flex;
+    gap: 5px;
+    border-top: 1px solid var(--lighter-gray);
+    padding-top: 12px;
+}
+
+.create-post-actions button {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.create-post-actions button:hover {
+    background: var(--bg);
+}
+
+/* ======================== */
+/*    المنشورات              */
+/* ======================== */
+.post-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+    animation: fadeIn 0.4s ease;
+    transition: var(--transition);
+}
+
+.post-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 12px;
+}
+
+.post-avatar {
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.post-user-info {
+    flex: 1;
+}
+
+.post-user-info strong {
+    display: block;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.post-user-info strong:hover {
+    color: var(--primary);
+}
+
+.post-user-info span {
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.post-menu-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.post-menu-btn:hover {
+    background: var(--bg);
+}
+
+/* محتوى المنشور */
+.post-content {
+    padding: 0 20px 15px;
+}
+
+.post-text {
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.post-text-bg {
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+    border-radius: var(--radius-sm);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.8;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.post-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: var(--radius-sm);
+}
+
+.post-image:hover {
+    opacity: 0.95;
+}
+
+.post-video {
+    width: 100%;
+    max-height: 500px;
+    border-radius: var(--radius-sm);
+    background: black;
+}
+
+/* إحصائيات المنشور */
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 20px;
+    color: var(--gray);
+    font-size: 13px;
+    border-bottom: 1px solid var(--lighter-gray);
+}
+
+.post-stats span {
+    cursor: pointer;
+}
+
+.post-stats span:hover {
+    text-decoration: underline;
+    color: var(--primary);
+}
+
+/* أزرار التفاعل */
+.post-actions {
+    display: flex;
+    padding: 5px 15px;
+    border-bottom: 1px solid var(--lighter-gray);
+}
+
+.action-btn {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.action-btn:hover {
+    background: var(--bg);
+}
+
+.action-btn.liked {
+    color: var(--danger);
+}
+
+.action-btn.liked i {
+    animation: likeAnim 0.4s ease;
+}
+
+@keyframes likeAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.action-btn.shared {
+    color: var(--success);
+}
+
+/* قسم التعليقات */
+.comments-section {
+    padding: 10px 20px 15px;
+}
+
+.comment-input-area {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.comment-input-area input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    background: var(--bg);
+    font-size: 13px;
+    font-family: inherit;
+    transition: var(--transition);
+}
+
+.comment-input-area input:focus {
+    outline: none;
+    background: var(--lighter-gray);
+}
+
+.comment-input-area button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-input-area button:hover {
+    background: var(--primary-dark);
+    transform: scale(1.1);
+}
+
+.comment {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.comment-avatar {
+    font-size: 28px;
+}
+
+.comment-body {
+    background: var(--bg);
+    padding: 8px 14px;
+    border-radius: 15px;
+    max-width: 80%;
+}
+
+.comment-body strong {
+    font-size: 13px;
+    display: block;
+}
+
+.comment-body p {
+    font-size: 13px;
+    color: var(--dark);
+}
+
+.comment-time {
+    font-size: 11px;
+    color: var(--light-gray);
+    margin-top: 3px;
+    padding-right: 40px;
+}
+
+/* قائمة المنشور */
+.post-dropdown {
+    position: absolute;
+    background: white;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-hover);
+    min-width: 180px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.post-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--dark);
+    transition: var(--transition);
+}
+
+.post-dropdown button:hover {
+    background: var(--bg);
+}
+
+.post-dropdown button.delete-btn {
+    color: var(--danger);
+}
+
+/* ======================== */
+/*    الشريط الجانبي الأيسر */
+/* ======================== */
+.online-users, .suggestions, .trending {
+    background: white;
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+}
+
+.online-users h4, .suggestions h4, .trending h4 {
+    margin-bottom: 15px;
+    color: var(--dark);
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.online-user-item, .suggestion-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 5px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.online-user-item:hover, .suggestion-item:hover {
+    background: var(--bg);
+}
+
+.online-user-item .user-emoji {
+    font-size: 28px;
+}
+
+.online-user-item .user-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.suggestion-item {
+    justify-content: space-between;
+}
+
+.suggestion-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.suggestion-info .user-emoji {
+    font-size: 28px;
+}
+
+.suggestion-info .user-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.follow-btn {
+    padding: 5px 15px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.follow-btn:hover {
+    background: var(--primary-dark);
+}
+
+.follow-btn.following {
+    background: var(--lighter-gray);
+    color: var(--gray);
+}
+
+.trending-item {
+    padding: 8px 5px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.trending-item:hover {
+    background: var(--bg);
+}
+
+.trending-item .trend-tag {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.trending-item .trend-count {
+    font-size: 11px;
+    color: var(--gray);
+}
+
+/* ======================== */
+/*    النوافذ المنبثقة       */
+/* ======================== */
+.modal-over
