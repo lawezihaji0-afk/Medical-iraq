@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شبكة الطلاب - الرئيسية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="main-page">
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="goHome()">
+                <i class="fas fa-graduation-cap"></i>
+                <span>شبكة الطلاب</span>
+            </div>
+            
+            <div class="nav-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="ابحث عن أشخاص أو منشورات..." oninput="searchPosts()">
+            </div>
+            
+            <div class="nav-actions">
+                <button class="nav-btn" onclick="goHome()" title="الرئيسية">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-label">الرئيسية</span>
+                </button>
+                <button class="nav-btn" onclick="openChat()" title="الرسائل">
+                    <i class="fas fa-comments"></i>
+                    <span class="msg-badge" id="msgBadge">0</span>
+                    <span class="nav-label">الدردشة</span>
+                </button>
+                <button class="nav-btn" onclick="showNotifications()" title="الإشعارات">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-badge" id="notifBadge">0</span>
+                    <span class="nav-label">إشعارات</span>
+                </button>
+                <button class="nav-btn" onclick="goToProfile()" title="صفحتي">
+                    <span class="nav-avatar" id="navAvatar">😊</span>
+                    <span class="nav-label">حسابي</span>
+                </button>
+                <button class="nav-btn logout-btn" onclick="logout()" title="خروج">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="main-content">
+        
+        <!-- الشريط الجانبي الأيمن -->
+        <aside class="sidebar-right">
+            <div class="user-card">
+                <div class="user-avatar-large" id="sideAvatar">😊</div>
+                <h3 id="sideFullName">المستخدم</h3>
+                <p id="sideUsername">@username</p>
+                <div class="user-stats">
+                    <div class="stat">
+                        <strong id="postCount">0</strong>
+                        <span>منشور</span>
+                    </div>
+                    <div class="stat">
+                        <strong id="followersCount">0</strong>
+                        <span>متابع</span>
+                    </div>
+                    <div class="stat">
+                        <strong id="followingCount">0</strong>
+                        <span>متابَع</span>
+                    </div>
+                </div>
+                <button class="btn-profile" onclick="goToProfile()">
+                    <i class="fas fa-user"></i> صفحتي الشخصية
+                </button>
+            </div>
+
+            <!-- التنقل السريع -->
+            <div class="quick-nav">
+                <h4><i class="fas fa-compass"></i> تصفح</h4>
+                <a href="#" onclick="filterPosts('all')"><i class="fas fa-globe"></i> كل المنشورات</a>
+                <a href="#" onclick="filterPosts('photos')"><i class="fas fa-images"></i> الصور</a>
+                <a href="#" onclick="filterPosts('videos')"><i class="fas fa-video"></i> الفيديوهات</a>
+                <a href="#" onclick="filterPosts('texts')"><i class="fas fa-pen"></i> الكتابات</a>
+                <a href="#" onclick="showSavedPosts()"><i class="fas fa-bookmark"></i> المحفوظات</a>
+            </div>
+        </aside>
+
+        <!-- المنطقة الوسطى (الفيد) -->
+        <main class="feed-area">
+            
+            <!-- قصص / ستوريز -->
+            <div class="stories-section">
+                <div class="story add-story" onclick="addStory()">
+                    <div class="story-avatar">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <span>أضف قصة</span>
+                </div>
+                <div id="storiesList" class="stories-list">
+                    <!-- القصص تضاف هنا -->
+                </div>
+            </div>
+
+            <!-- إنشاء منشور جديد -->
+            <div class="create-post-card">
+                <div class="create-post-header">
+                    <div class="create-avatar" id="createAvatar">😊</div>
+                    <div class="create-input" onclick="openCreatePost()">
+                        شو تفكر فيه؟ شارك شيء مع الجميع...
+                    </div>
+                </div>
+                <div class="create-post-actions">
+                    <button onclick="openCreatePost('photo')">
+                        <i class="fas fa-image" style="color: #4CAF50;"></i> صورة
+                    </button>
+                    <button onclick="openCreatePost('video')">
+                        <i class="fas fa-video" style="color: #e74c3c;"></i> فيديو
+                    </button>
+                    <button onclick="openCreatePost('text')">
+                        <i class="fas fa-pen" style="color: #3498db;"></i> كتابة
+                    </button>
+                    <button onclick="openCreatePost('poll')">
+                        <i class="fas fa-poll" style="color: #f39c12;"></i> تصويت
+                    </button>
+                </div>
+            </div>
+
+            <!-- المنشورات -->
+            <div id="postsContainer">
+                <!-- المنشورات تضاف هنا ديناميكياً -->
+            </div>
+
+            <!-- تحميل المزيد -->
+            <div class="load-more" id="loadMore" onclick="loadMorePosts()">
+                <i class="fas fa-arrow-down"></i> تحميل المزيد
+            </div>
+        </main>
+
+        <!-- الشريط الجانبي الأيسر -->
+        <aside class="sidebar-left">
+            <!-- المستخدمون النشطون -->
+            <div class="online-users">
+                <h4><i class="fas fa-circle" style="color: #4CAF50; font-size: 10px;"></i> متصلون الآن</h4>
+                <div id="onlineUsersList">
+                    <!-- المستخدمون النشطون -->
+                </div>
+            </div>
+
+            <!-- اقتراحات المتابعة -->
+            <div class="suggestions">
+                <h4><i class="fas fa-user-plus"></i> اقتراحات</h4>
+                <div id="suggestionsList">
+                    <!-- الاقتراحات -->
+                </div>
+            </div>
+
+            <!-- المواضيع الرائجة -->
+            <div class="trending">
+                <h4><i class="fas fa-fire"></i> رائج الآن</h4>
+                <div id="trendingList">
+                    <!-- المواضيع الرائجة -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- نافذة إنشاء منشور -->
+    <div class="modal-overlay hidden" id="createPostModal">
+        <div class="modal-content create-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> منشور جديد</h3>
+                <button class="close-modal" onclick="closeCreatePost()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="post-author-info">
+                    <span class="modal-avatar" id="modalAvatar">😊</span>
+                    <div>
+                        <strong id="modalFullName">المستخدم</strong>
+                        <select id="postPrivacy">
+                            <option value="public">🌍 عام</option>
+                            <option value="followers">👥 المتابعين فقط</option>
+                            <option value="private">🔒 خاص</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <textarea id="postText" placeholder="اكتب شيء هنا..." rows="4"></textarea>
+                
+                <!-- معاينة الوسائط -->
+                <div class="media-preview hidden" id="mediaPreview">
+                    <button class="remove-media" onclick="removeMedia()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div id="mediaContent"></div>
+                </div>
+                
+                <div class="post-options">
+                    <label class="file-upload-btn">
+                        <i class="fas fa-image"></i> صورة
+                        <input type="file" id="postImage" accept="image/*" onchange="previewMedia('image')" hidden>
+                    </label>
+                    <label class="file-upload-btn">
+                        <i class="fas fa-video"></i> فيديو
+                        <input type="file" id="postVideo" accept="video/*" onchange="previewMedia('video')" hidden>
+                    </label>
+                    <button class="emoji-btn" onclick="toggleEmojiPicker()">
+                        <i class="fas fa-smile"></i> إيموجي
+                    </button>
+                    <button class="color-btn" onclick="toggleBgColors()">
+                        <i class="fas fa-palette"></i> خلفية
+                    </button>
+                </div>
+
+                <!-- اختيار الإيموجي -->
+                <div class="emoji-picker hidden" id="emojiPicker">
+                    <div class="emoji-grid">
+                        <span onclick="addEmoji('😀')">😀</span>
+                        <span onclick="addEmoji('😂')">😂</span>
+                        <span onclick="addEmoji('❤️')">❤️</span>
+                        <span onclick="addEmoji('👍')">👍</span>
+                        <span onclick="addEmoji('🎉')">🎉</span>
+                        <span onclick="addEmoji('🔥')">🔥</span>
+                        <span onclick="addEmoji('💯')">💯</span>
+                        <span onclick="addEmoji('😍')">😍</span>
+                        <span onclick="addEmoji('🤔')">🤔</span>
+                        <span onclick="addEmoji('👏')">👏</span>
+                        <span onclick="addEmoji('💪')">💪</span>
+                        <span onclick="addEmoji('✨')">✨</span>
+                        <span onclick="addEmoji('📚')">📚</span>
+                        <span onclick="addEmoji('🎓')">🎓</span>
+                        <span onclick="addEmoji('💻')">💻</span>
+                        <span onclick="addEmoji('🌟')">🌟</span>
+                        <span onclick="addEmoji('😊')">😊</span>
+                        <span onclick="addEmoji('🙏')">🙏</span>
+                        <span onclick="addEmoji('😢')">😢</span>
+                        <span onclick="addEmoji('😡')">😡</span>
+                    </div>
+                </div>
+
+                <!-- اختيار لون الخلفية -->
+                <div class="bg-colors hidden" id="bgColors">
+                    <div class="color-option" style="background: white; border: 1px solid #ddd;" onclick="setBgColor('white')"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #667eea, #764ba2);" onclick="setBgColor('linear-gradient(135deg, #667eea, #764ba2)')"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #f093fb, #f5576c);" onclick="setBgColor('linear-gradient(135deg, #f093fb, #f5576c)')"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #4facfe, #00f2fe);" onclick="setBgColor('linear-gradient(135deg, #4facfe, #00f2fe)')"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #43e97b, #38f9d7);" onclick="setBgColor('linear-gradient(135deg, #43e97b, #38f9d7)')"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #fa709a, #fee140);" onclick="setBgColor('linear-gradient(135deg, #fa709a, #fee140)')"></div>
+                    <div class="color-option" style="background: #1a1a2e;" onclick="setBgColor('#1a1a2e')"></div>
+                    <div class="color-option" style="background: #e74c3c;" onclick="setBgColor('#e74c3c')"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-publish" onclick="publishPost()">
+                    <i class="fas fa-paper-plane"></i> نشر المنشور
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الدردشة -->
+    <div class="chat-panel hidden" id="chatPanel">
+        <div class="chat-header">
+            <h3><i class="fas fa-comments"></i> الدردشة</h3>
+            <button onclick="closeChat()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-users" id="chatUsersList">
+            <!-- قائمة المستخدمين -->
+        </div>
+        <div class="chat-conversation hidden" id="chatConversation">
+            <div class="chat-conv-header">
+                <button onclick="backToChatList()"><i class="fas fa-arrow-right"></i></button>
+                <span id="chatWithName">المستخدم</span>
+                <span class="online-dot"></span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <!-- الرسائل -->
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="اكتب رسالة..." onkeypress="handleChatKey(event)">
+                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الإشعارات -->
+    <div class="notifications-panel hidden" id="notificationsPanel">
+        <div class="notif-header">
+            <h3><i class="fas fa-bell"></i> الإشعارات</h3>
+            <button onclick="closeNotifications()"><i class="fas fa-times"></i></button>
+            <button class="mark-read" onclick="markAllRead()">قراءة الكل</button>
+        </div>
+        <div class="notif-list" id="notifList">
+            <!-- الإشعارات -->
+        </div>
+    </div>
+
+    <!-- نافذة عرض الصور -->
+    <div class="lightbox hidden" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <!-- رسائل التنبيه -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+  </html>
