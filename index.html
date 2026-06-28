@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شبكة الطلاب - تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+
+    <!-- خلفية متحركة -->
+    <div class="animated-bg">
+        <div class="circle c1"></div>
+        <div class="circle c2"></div>
+        <div class="circle c3"></div>
+        <div class="circle c4"></div>
+        <div class="circle c5"></div>
+    </div>
+
+    <div class="auth-container">
+        <!-- الشعار -->
+        <div class="logo-section">
+            <div class="logo-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1>شبكة الطلاب</h1>
+            <p>تواصل، شارك، وتعلّم مع زملائك</p>
+        </div>
+
+        <!-- نموذج تسجيل الدخول -->
+        <div class="auth-form" id="loginForm">
+            <h2><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</h2>
+            
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="loginUsername" placeholder="اسم المستخدم" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-key"></i>
+                <input type="text" id="loginCode" placeholder="الرمز السري" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="loginPassword" placeholder="كلمة المرور" required>
+            </div>
+
+            <button class="btn-primary" onclick="login()">
+                <i class="fas fa-arrow-left"></i> دخول
+            </button>
+
+            <div class="switch-form">
+                ما عندك حساب؟ 
+                <a href="#" onclick="showRegister()">سجّل الآن</a>
+            </div>
+        </div>
+
+        <!-- نموذج التسجيل -->
+        <div class="auth-form hidden" id="registerForm">
+            <h2><i class="fas fa-user-plus"></i> حساب جديد</h2>
+            
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="regFullName" placeholder="الاسم الكامل" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-at"></i>
+                <input type="text" id="regUsername" placeholder="اسم المستخدم (بالإنجليزي)" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="regEmail" placeholder="البريد الإلكتروني" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-key"></i>
+                <input type="text" id="regCode" placeholder="اختر رمز سري (4 أرقام)" maxlength="4" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="regPassword" placeholder="كلمة المرور" required>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="regPasswordConfirm" placeholder="تأكيد كلمة المرور" required>
+            </div>
+
+            <div class="avatar-select">
+                <p>اختر صورة رمزية:</p>
+                <div class="avatar-options">
+                    <div class="avatar-option selected" data-avatar="😊" onclick="selectAvatar(this)">😊</div>
+                    <div class="avatar-option" data-avatar="😎" onclick="selectAvatar(this)">😎</div>
+                    <div class="avatar-option" data-avatar="🧑‍🎓" onclick="selectAvatar(this)">🧑‍🎓</div>
+                    <div class="avatar-option" data-avatar="👨‍💻" onclick="selectAvatar(this)">👨‍💻</div>
+                    <div class="avatar-option" data-avatar="👩‍🎓" onclick="selectAvatar(this)">👩‍🎓</div>
+                    <div class="avatar-option" data-avatar="🦁" onclick="selectAvatar(this)">🦁</div>
+                    <div class="avatar-option" data-avatar="🦊" onclick="selectAvatar(this)">🦊</div>
+                    <div class="avatar-option" data-avatar="🐯" onclick="selectAvatar(this)">🐯</div>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="register()">
+                <i class="fas fa-user-plus"></i> تسجيل
+            </button>
+
+            <div class="switch-form">
+                عندك حساب؟ 
+                <a href="#" onclick="showLogin()">سجّل دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- رسائل التنبيه -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
